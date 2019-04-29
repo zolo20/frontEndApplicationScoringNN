@@ -1,0 +1,25 @@
+<div class="page-general">
+  <p-table [columns]="cols" [frozenColumns]="frozenCols" [value]="rows" [paginator]="true" [paginatorPosition]="'top'"
+           [scrollable]="true" scrollHeight="486px" frozenWidth="4%" [lazy]="true" (onLazyLoad)="loadCarsLazy($event)"
+           [rows]="length" [loading]="loading" [totalRecords]="totalRecords">
+    <ng-template pTemplate="colgroup" let-columns>
+      <colgroup>
+        <col *ngFor="let col of columns" style="width:300px">
+      </colgroup>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns" >
+          {{col.header}}
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr>
+        <td *ngFor="let col of columns">
+          {{rowData[col.field]}}
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

@@ -1,0 +1,130 @@
+.page-get-started {
+  position:absolute;
+  top:15%;
+  height:85%;
+  background: rgb(255, 255, 255);
+  width: 30%;
+  min-width: 315px;
+}
+
+.page-view {
+  margin-left: 7%;
+  margin-top: 40%;
+  margin-right: 7%;
+}
+
+.chapter {
+  position: inherit;
+  font: 180% serif;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.major {
+  position: inherit;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  text-align: justify;
+  min-width: 18em;
+}
+
+.get-started {
+  position: inherit;
+  min-width: 14em;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+#get-started {
+  background-color: white;
+  border-color: #a6a6a6;
+  height: 3.5em;
+  border-radius: 35px;
+  transition: all 0.3s ease;
+}
+
+#get-started:hover {
+  box-shadow: inset 0 0 0 3.5em rgba(75, 75, 66, 0.36);
+}
+
+#get-started:active {
+  border-color: rgba(77, 161, 255, 0.53);
+  border-width: 4px 4px 4px 4px;
+}
+
+.page-general {
+  position: absolute;
+  top:15%;
+  height:85%;
+  left: 15.5%;
+  background: rgb(255, 255, 255);
+  width: 69%;
+  min-width: 315px;
+}
+
+.page-general p-calendar {
+  line-height: 0.5em;
+}
+.page-general p {
+  font-weight: bolder;
+  margin-bottom: 0;
+}
+
+.page-general input {
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
+  height: 35px;
+  font-size: 1em;
+  border-radius: 3px;
+  outline: none;
+  border: 1px solid #a6a6a6;
+  transition: border-color 0.2s;
+  text-indent: 0.35em;
+  width: 171px;
+  min-width: 171px;
+}
+
+
+.page-general input[type="text"]:hover {
+  border-color: #333333;
+}
+
+.page-general input[type="text"]:focus {
+  border-color: #007bff;
+}
+
+.area-inline {
+  float: left;
+  width: 42%;
+  margin-top: 5%;
+  margin-left: 6%;
+  min-width: 296px;
+}
+
+.all-elem {
+  position: absolute;
+  width: 42%;
+}
+
+.sub-elem-inline-left {
+  float: left;
+  margin-right: 2%;
+}
+
+.elem-to-next-line {
+  clear: both;
+}
+
+.sub-elem-inline-right {
+  float: right;
+  margin-right: 3%;
+  width: 31%;
+}
+
+.switch-co-borrower {
+  margin-top: 1%;
+}
+
+.get-result {
+  float: right;
+  margin-top: 5%;
+}

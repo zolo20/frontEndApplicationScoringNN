@@ -1,0 +1,116 @@
+<div class="page-get-started" [hidden]="pressGetStartedBoolean">
+  <div class="page-view">
+    <h1 class="chapter">Application NN</h1>
+    <p class="major">Dear friends!<br>The application does not carry a real practical business solution and was developed only for training.</p>
+    <button id="get-started" pButton type="button" label="GET STARTED" class="ui-button-secondary get-started" (click)="pressGetStarted()"></button>
+  </div>
+</div>
+<div class="page-general" [hidden]="!pressGetStartedBoolean">
+  <p-dialog header="Answer" [(visible)]="display" [modal]="true" [responsive]="true" [style]="{width: '350px', minWidth: '200px'}" [minY]="70"
+            [maximizable]="true" [baseZIndex]="10000">
+    <p>{{strTextAnswer}}<br>{{strAnswer}}</p>
+    <p-footer>
+      <button type="button" pButton icon="pi pi-check" (click)="display=false" label="OK"></button>
+    </p-footer>
+  </p-dialog>
+  <p-toast [style]="{marginTop: '80px'}" position="bottom-right" key="br"></p-toast>
+  <div class="area-inline">
+    <!--Element borrower-->
+    <div class="all-elem">
+      <div class="sub-elem-inline-left">
+        <p>Begin Date Of Seniority:</p>
+        <p-calendar dateFormat="dd/mm/yy" [(ngModel)]="borrower.beginDateOfSeniority" [monthNavigator]="true" [yearNavigator]="true" yearRange="1960:2100" [showIcon]="true" placeholder="Begin Date"></p-calendar>
+      </div>
+      <div class="sub-elem-inline-left">
+        <p>Salary:</p>
+        <input type="text" [(ngModel)]="borrower.salary" pInputText pKeyFilter="money" placeholder="Salary" maxlength="8">
+      </div>
+      <p class="sub-elem-inline-left">Certificate Of Wages:</p>
+      <div class="sub-elem-inline-left">
+        <p-checkbox [(ngModel)]="borrower.certificate" binary="true"></p-checkbox>
+      </div>
+      <div class="sub-elem-inline-right">
+        <p class="sub-elem-inline-left">Other Credit:</p>
+        <div class="sub-elem-inline-left">
+          <p-checkbox [(ngModel)]="borrower.otherLoan" binary="true"></p-checkbox>
+        </div>
+      </div>
+      <div class="elem-to-next-line">
+        <p>Date Of Birth:</p>
+        <p-calendar dateFormat="dd/mm/yy" [(ngModel)]="borrower.dateOfBirth" [monthNavigator]="true" [yearNavigator]="true" yearRange="1900:2100" [showIcon]="true" placeholder="Date of Birth"></p-calendar>
+      </div>
+      <div class="elem-to-next-line">
+        <p>Credit History Assessment:</p>
+        <input type="text" pInputText [pKeyFilter]="regExScoreCrdHis" [(ngModel)]="borrower.creditHistoryAssessment" placeholder="Assessment" maxlength="3" [pTooltip]="strScore">
+      </div>
+      <div class="elem-to-next-line switch-co-borrower">
+        <p class="sub-elem-inline-left">Co-Borrower:</p>
+        <div class="sub-elem-inline-left ">
+          <p-inputSwitch [(ngModel)]="hasCoBorrower"></p-inputSwitch>
+        </div>
+      </div>
+      <!--Element co-borrower-->
+      <div class="elem-to-next-line" [hidden]="!hasCoBorrower">
+        <hr/>
+      </div>
+      <div class="sub-elem-inline-left" [hidden]="!hasCoBorrower">
+        <p>Begin Date of Seniority:</p>
+        <p-calendar dateFormat="dd/mm/yy" [(ngModel)]="coBorrower.beginDateOfSeniority" [monthNavigator]="true" [yearNavigator]="true" yearRange="1960:2100" [showIcon]="true" placeholder="Begin Date"></p-calendar>
+      </div>
+      <div class="sub-elem-inline-left" [hidden]="!hasCoBorrower">
+        <p>Salary:</p>
+        <input type="text" pInputText pKeyFilter="money" [(ngModel)]="coBorrower.salary" placeholder="Salary" maxlength="8">
+      </div>
+      <p class="sub-elem-inline-left" [hidden]="!hasCoBorrower">Certificate of Wages:</p>
+      <div class="sub-elem-inline-left" [hidden]="!hasCoBorrower">
+        <p-checkbox [(ngModel)]="coBorrower.certificate" binary="true"></p-checkbox>
+      </div>
+      <div class="sub-elem-inline-right" [hidden]="!hasCoBorrower">
+        <p class="sub-elem-inline-left">Other Credit:</p>
+        <div class="sub-elem-inline-left">
+          <p-checkbox [(ngModel)]="coBorrower.otherLoan" binary="true"></p-checkbox>
+        </div>
+      </div>
+      <div class="elem-to-next-line" [hidden]="!hasCoBorrower">
+        <p>Date of Birth:</p>
+        <p-calendar dateFormat="dd/mm/yy" [(ngModel)]="coBorrower.dateOfBirth" [monthNavigator]="true" [yearNavigator]="true" yearRange="1900:2100" [showIcon]="true" placeholder="Date of Birth"></p-calendar>
+      </div>
+      <div class="elem-to-next-line" [hidden]="!hasCoBorrower">
+        <p>Credit History Assessment:</p>
+        <input type="text" pInputText [(ngModel)]="coBorrower.creditHistoryAssessment" [pKeyFilter]="regExScoreCrdHis" placeholder="Assessment" maxlength="3" [pTooltip]="strScore">
+      </div>
+    </div>
+  </div>
+  <!--Element Loan.ts-->
+  <div class="area-inline">
+    <div class="all-elem">
+      <p>Type Loan:</p>
+      <p-dropdown class="cmd-value-type-loan" [options]="loans" [(ngModel)]="selectedLoan" [showClear]="true" (onChange)="setLoan()"></p-dropdown>
+      <div class="elem-to-next-line">
+        <p>Credit Amount:</p>
+        <input type="text" pInputText [(ngModel)]="valAmount" style="width:100%;" [disabled]="disabled"/>
+        <p-slider [(ngModel)]="valAmount" [style]="{'width':'100%'}" [min]="minAmount" [max]="30000000" [step]="500" [disabled]="disabled" (onChange)="handleChange()"></p-slider>
+      </div>
+      <div class="elem-to-next-line">
+        <p>An Initial Fee:</p>
+        <input type="text" pInputText [(ngModel)]="valInitialFee" style="width:100%;" [disabled]="disabled"/>
+        <p-slider [(ngModel)]="valInitialFee" [style]="{'width':'100%'}" [min]="minInitialFee" [max]="valAmount" [step]="500" [disabled]="disabled" [animate]="true"></p-slider>
+      </div>
+      <div class="elem-to-next-line">
+        <p>Interest Rate:</p>
+        <input type="text" pInputText [(ngModel)]="valInterestRate" style="width:100%;" [disabled]="disabled"/>
+        <p-slider [(ngModel)]="valInterestRate" [style]="{'width':'100%'}" [min]="minInterestRate" [max]="30.0" [step]="0.1" [disabled]="disabled"></p-slider>
+      </div>
+      <div class="elem-to-next-line">
+        <p>Credit Term:</p>
+        <input type="text" pInputText [(ngModel)]="valCreditTerm" style="width:100%;" [disabled]="disabled">
+        <p-slider [(ngModel)]="valCreditTerm" [style]="{'width':'100%'}" [min]="1" [max]="40" [step]="1" [disabled]="disabled"></p-slider>
+      </div>
+      <div class="elem-to-next-line">
+        <div class="get-result">
+          <button pButton type="button" icon="pi pi-check" label="Let's Get It" iconPos="right" class="ui-button-success" (click)="sendRequest()"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
